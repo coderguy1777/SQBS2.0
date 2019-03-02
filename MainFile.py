@@ -23,6 +23,7 @@ for value in filedata:
     else:
         temp.append(value)
 print(temp)
+# Removes -1 data values from this.
 for i in temp:
     if i != -1:
         pass
@@ -43,7 +44,7 @@ for i in temp:
 temp.sort()
 
 # gets the scores from the temp lists
-count1 =0
+count1 = 0
 testli = []
 for i1 in temp:
     testli.append(temp.pop(count1))
