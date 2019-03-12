@@ -1,0 +1,46 @@
+.button {
+    -fx-background-color: green;
+}
+
+.box {
+    -fx-position-shape: center;
+    -fx-border-radius: 5px;
+    -fx-background-color: #353d7b;
+    -fx-alignment: center;
+    -fx-background-position: back;
+    -fx-opacity: 60%;
+}
+
+.button:hover {
+    -fx-background-color: White;
+}
+
+.root {
+    -fx-background-color: #444b63;
+}
+
+.label {
+    -fx-background-color: #378f55;
+    -fx-border-width: 20px;
+    -fx-border-radius: 300px;
+    -fx-text-alignment: center;
+}
+
+.label2 {
+    -fx-background-color: #c5a033;
+    -fx-border-radius: 100 100 0 0;
+    -fx-text-alignment: center;
+}
+
+.aboutcss {
+    -fx-background-color: #ffc9ac;
+    -fx-border-width: 30px;
+    -fx-wrap-text: break-all;
+    -fx-display: block;
+    -fx-border-radius: 5 5 5 5;
+    -fx-background-radius: 5 5 5 5;
+}
+
+.body2 {
+    -fx-background-color: #478d5c;
+}
