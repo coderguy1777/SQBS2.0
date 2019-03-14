@@ -3,14 +3,19 @@ package GUIandJavaFXFrontEnd;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Box;
 import javafx.scene.layout.StackPane;
 import MainFiles.DivisionEntry;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Shape;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -90,12 +95,22 @@ public class Frontend extends Application {
         // Aligns content in the center of the window.
         menu.setAlignment(Pos.CENTER);
 
+        // Side Bar Icon 1: Tutorials
+        Circle circleTutorials = new Circle();
+        circleTutorials.setRadius(50);
+        circleTutorials.setTranslateX(-850.0);
+        menu.getChildren().add(circleTutorials);
+        ShapeColors sideBarColor = new ShapeColors(0);
+        circleTutorials.setFill(sideBarColor.getColor(0));
+        circleTutorials.setOnMousePressed(event -> circleTutorials.setFill(sideBarColor.getColor(1)));
+        circleTutorials.setOnMouseReleased(event1 -> circleTutorials.setFill(sideBarColor.getColor(0)));
+
         // Set up of scenes and windows for the program to use
         primaryStage.setTitle("SQBS 2.0");
         // Menu
         Scene scene = new Scene(menu, 1920, 1020);
         // About section
-        Scene aboutsection = new Scene(aboutsec, 1920, 1020);
+        Scene aboutsection = new Scene(aboutsec, 1020, 1020);
 
         // Button Events
         about.setOnAction(event -> primaryStage.setScene(aboutsection));

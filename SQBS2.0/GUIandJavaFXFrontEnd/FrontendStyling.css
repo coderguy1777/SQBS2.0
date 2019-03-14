@@ -32,6 +32,14 @@
     -fx-text-alignment: center;
 }
 
+.circle {
+    -fx-background-color: red;
+}
+
+.circle:hover {
+    -fx-background-color: green;
+}
+
 .aboutcss {
     -fx-background-color: #ffc9ac;
     -fx-border-width: 30px;
