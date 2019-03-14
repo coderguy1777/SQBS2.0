@@ -121,5 +121,7 @@ public class Frontend extends Application {
         aboutsection.getStylesheets().add(getClass().getResource("FrontendStyling.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
+        int i =0;
+        i++;
     }
 }
