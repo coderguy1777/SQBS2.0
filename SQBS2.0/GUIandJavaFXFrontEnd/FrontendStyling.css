@@ -52,3 +52,14 @@
 .body2 {
     -fx-background-color: #478d5c;
 }
+
+.testclass {
+    -fx-background-color: #353d7b;
+    -fx-border-radius: 5 5 5 5;
+    -fx-background-radius: 5 5 5 5;
+    -fx-text-fill: white;
+}
+
+.testclass:visited {
+    -fx-background-color: red;
+}

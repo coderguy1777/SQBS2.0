@@ -21,16 +21,59 @@ class ShapeColors {
 
     private void ColorVars() {
         // Shades of blue.
+        ArrayList<Color>blueshades = new ArrayList<>();
         Color cyan = new Color(0.1, 0.7, 0.9, 0.9);
+        blueshades.add(cyan);
         Color navyblue = new Color(0.1, 0.3, 0.8, 0.5);
+        blueshades.add(navyblue);
         Color teal = new Color(0.1, 0.5, 0.8, 0.9);
+        blueshades.add(teal);
         Color aqua = new Color(0.1, 0.8, 0.9, 0.9);
+        blueshades.add(aqua);
 
-        // Adds the colors to the new ArrayList in this case.
-        Colors.add(cyan);
-        Colors.add(navyblue);
-        Colors.add(teal);
-        Colors.add(aqua);
+        // Shades of red
+        ArrayList<Color>redshades = new ArrayList<>();
+        Color maroon = new Color(0.8, 0.1, 0.1, 0.5);
+        redshades.add(maroon);
+        Color pastelred = new Color(0.8, 0.3, 0.3, 0.9);
+        redshades.add(pastelred);
+        Color lightred = new Color(0.9, 0.34, 0.3, 0.9);
+        redshades.add(lightred);
+        Color darkred = new Color(0.9, 0, 0, 0.4);
+        redshades.add(darkred);
+
+        // Shades of Green
+        ArrayList<Color>greenshades = new ArrayList<>();
+        Color pastelgreen = new Color(0.3, 0.8, 0.3, 0.95);
+        greenshades.add(pastelgreen);
+        Color darkgreen = new Color(0.1, 0.8, 0.1, 0.3);
+        greenshades.add(darkgreen);
+        Color navygreen = new Color(0.1, 0.9, 0.1, 0.1);
+        greenshades.add(navygreen);
+        Color turquoise = new Color(0.1, 0.6, 0.45, 0.8);
+        greenshades.add(turquoise);
+
+        //********************************************************************
+
+        /* adds red shades */
+        for(Color i: redshades) {
+            addColors(i);
+        }
+
+        /* adds green shades */
+        for(Color j: greenshades) {
+            addColors(j);
+        }
+
+        /* adds blue shades */
+        for(Color k: blueshades) {
+            addColors(k);
+        }
+
+    }
+
+    private void addColors(Color input) {
+        Colors.add(input);
     }
 
 

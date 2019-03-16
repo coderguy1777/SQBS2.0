@@ -1,24 +1,20 @@
 package GUIandJavaFXFrontEnd;
 
+// Imports from javafx
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Box;
 import javafx.scene.layout.StackPane;
-import MainFiles.DivisionEntry;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Shape;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class Frontend extends Application {
@@ -105,15 +101,51 @@ public class Frontend extends Application {
         circleTutorials.setOnMousePressed(event -> circleTutorials.setFill(sideBarColor.getColor(1)));
         circleTutorials.setOnMouseReleased(event1 -> circleTutorials.setFill(sideBarColor.getColor(0)));
 
+        // Tutorials Icon Tool Wrench.
+        Image imageIcon = new Image("http://icons.iconarchive.com/icons/pixelkit/swanky-outlines/256/08-Wrench-icon.png", 75, 75, false, true);
+        ImageView iconTool = new ImageView(imageIcon);
+        menu.getChildren().add(iconTool);
+        iconTool.setTranslateX(-850.0);
+
+        // Tutorials Icon Caption Label
+        Label tutorials = new Label("SQBS 2.0 Tutorials!");
+        tutorials.setFont(new Font("Arial", 15));
+        tutorials.setTranslateX(-850.0);
+        tutorials.setTranslateY(75.0);
+        menu.getChildren().add(tutorials);
+        tutorials.getStyleClass().add("testclass");
+        tutorials.setVisible(false);
+
+        // Tutorial Icon Bottom Text event visible
+        circleTutorials.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                tutorials.setVisible(true);
+                if(event.getClickCount() == 2) {
+                    tutorials.setVisible(false);
+                }
+            }
+        });
+
         // Set up of scenes and windows for the program to use
         primaryStage.setTitle("SQBS 2.0");
         // Menu
         Scene scene = new Scene(menu, 1920, 1020);
         // About section
-        Scene aboutsection = new Scene(aboutsec, 1020, 1020);
+        Scene aboutsection = new Scene(aboutsec, 1920, 1020);
 
         // Button Events
         about.setOnAction(event -> primaryStage.setScene(aboutsection));
+
+        // Fullscreen event
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if(event.getCode() == KeyCode.F) {
+                    primaryStage.setFullScreen(true);
+                }
+            }
+        });
 
         // CSS Styling
         aboutsec.getStyleClass().add("body2");
@@ -121,7 +153,5 @@ public class Frontend extends Application {
         aboutsection.getStylesheets().add(getClass().getResource("FrontendStyling.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
-        int i =0;
-        i++;
     }
 }
