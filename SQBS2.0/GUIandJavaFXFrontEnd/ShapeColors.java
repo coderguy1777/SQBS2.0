@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 class ShapeColors {
     int colorwanted;
-    private ArrayList<Color>Colors = new ArrayList<>();
+    public ArrayList<Color>Colors = new ArrayList<>();
 
     ShapeColors(int colorwanted) {
         this.colorwanted = colorwanted;

@@ -12,7 +12,7 @@
 }
 
 .button:hover {
-    -fx-background-color: White;
+    -fx-background-color: #ffa68b;
 }
 
 .root {
@@ -23,6 +23,7 @@
     -fx-background-color: #378f55;
     -fx-border-width: 20px;
     -fx-border-radius: 300px;
+    -fx-border: 20px;
     -fx-text-alignment: center;
 }
 
@@ -55,11 +56,14 @@
 
 .testclass {
     -fx-background-color: #353d7b;
-    -fx-border-radius: 5 5 5 5;
-    -fx-background-radius: 5 5 5 5;
+    -fx-border-radius: 2 2 2 2;
+    -fx-border-width: 1px;
+    -fx-background-radius: 2 2 2 2;
     -fx-text-fill: white;
 }
 
-.testclass:visited {
-    -fx-background-color: red;
+.boxx {
+    -fx-border-radius: 20 20 20 20;
+    -fx-background-color: lightgreen;
+    -fx-background-radius: 20 20 20 20;
 }

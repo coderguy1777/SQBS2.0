@@ -14,8 +14,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+
 
 public class Frontend extends Application {
 
@@ -98,14 +100,21 @@ public class Frontend extends Application {
         menu.getChildren().add(circleTutorials);
         ShapeColors sideBarColor = new ShapeColors(0);
         circleTutorials.setFill(sideBarColor.getColor(0));
-        circleTutorials.setOnMousePressed(event -> circleTutorials.setFill(sideBarColor.getColor(1)));
-        circleTutorials.setOnMouseReleased(event1 -> circleTutorials.setFill(sideBarColor.getColor(0)));
 
         // Tutorials Icon Tool Wrench.
         Image imageIcon = new Image("http://icons.iconarchive.com/icons/pixelkit/swanky-outlines/256/08-Wrench-icon.png", 75, 75, false, true);
         ImageView iconTool = new ImageView(imageIcon);
         menu.getChildren().add(iconTool);
         iconTool.setTranslateX(-850.0);
+
+
+        Rectangle tutli = new Rectangle(200.0, 190.0);
+        tutli.setTranslateX(-850.0);
+        tutli.setTranslateY(155.0);
+        tutli.setFill(sideBarColor.getColor(6));
+        menu.getChildren().add(tutli);
+        tutli.setVisible(false);
+        tutli.getStyleClass().add("boxx");
 
         // Tutorials Icon Caption Label
         Label tutorials = new Label("SQBS 2.0 Tutorials!");
@@ -115,17 +124,22 @@ public class Frontend extends Application {
         menu.getChildren().add(tutorials);
         tutorials.getStyleClass().add("testclass");
         tutorials.setVisible(false);
+        circleTutorials.setOnMouseClicked(event -> circleTutorials.isFocused());
 
         // Tutorial Icon Bottom Text event visible
         circleTutorials.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 tutorials.setVisible(true);
+                tutli.setVisible(true);
                 if(event.getClickCount() == 2) {
                     tutorials.setVisible(false);
+                    tutli.setVisible(false);
                 }
             }
         });
+
+
 
         // Set up of scenes and windows for the program to use
         primaryStage.setTitle("SQBS 2.0");
