@@ -34,11 +34,14 @@ public class DynamicScale {
     }
 
     public double scaleObjectXPos(double xPos) {
-        return xPos;
+        double xpos = xPos/1.5;
+        return xpos;
     }
 
     public double scaleObjectYPos(double yPos) {
-        return yPos;
+        double ypos = yPos / 1.5;
+
+        return ypos;
     }
 
     public void setScreenHeight(double sh) {

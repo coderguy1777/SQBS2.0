@@ -32,6 +32,8 @@ public class Frontend extends Application {
         StackPane tournamententering = new StackPane();
         StackPane aboutsec = new StackPane();
 
+
+
         // New Tournament option.
         Button new_tournament = new Button("New Tournament");
         new_tournament.setMaxWidth(200.0);
@@ -74,11 +76,13 @@ public class Frontend extends Application {
 
         // Title
         Label title = new Label("SQBS 2.0");
+        DynamicScale scale = new DynamicScale(primaryStage.getMaxHeight(), primaryStage.getMaxWidth(), title.getTranslateX(), title.getTranslateY());
         title.setTranslateY(-400.0);
         title.setAlignment(Pos.CENTER);
         title.setMaxWidth(300.0);
         title.setMaxHeight(100.0);
         title.setFont(new Font("Sans", 50));
+        title.setTranslateY(scale.scaleObjectYPos(title.getTranslateY()));
         menu.getChildren().add(title);
 
         // About section stuff
@@ -95,11 +99,14 @@ public class Frontend extends Application {
 
         // Side Bar Icon 1: Tutorials
         Circle circleTutorials = new Circle();
+        DynamicScale dynamicScale = new DynamicScale(primaryStage.getMaxHeight(), primaryStage.getMaxWidth(), circleTutorials.getTranslateX(), circleTutorials.getTranslateY());
+
         circleTutorials.setRadius(50);
         circleTutorials.setTranslateX(-850.0);
         menu.getChildren().add(circleTutorials);
         ShapeColors sideBarColor = new ShapeColors(0);
         circleTutorials.setFill(sideBarColor.getColor(0));
+        circleTutorials.setTranslateX(dynamicScale.scaleObjectXPos(circleTutorials.getTranslateX()));
 
         // Tutorials Icon Tool Wrench.
         Image imageIcon = new Image("http://icons.iconarchive.com/icons/pixelkit/swanky-outlines/256/08-Wrench-icon.png", 75, 75, false, true);
@@ -107,6 +114,10 @@ public class Frontend extends Application {
         menu.getChildren().add(iconTool);
         iconTool.setTranslateX(-850.0);
 
+        DynamicScale dynamicScale2 = new DynamicScale(primaryStage.getMaxHeight(), primaryStage.getMaxWidth(), iconTool.getX(), iconTool.getY());
+        System.out.println(iconTool.getTranslateX());
+
+        System.out.println(iconTool.getTranslateX());
 
         Rectangle tutli = new Rectangle(200.0, 190.0);
         tutli.setTranslateX(-850.0);
@@ -115,6 +126,7 @@ public class Frontend extends Application {
         menu.getChildren().add(tutli);
         tutli.setVisible(false);
         tutli.getStyleClass().add("boxx");
+        tutli.setTranslateX(dynamicScale.scaleObjectXPos(tutli.getTranslateX()));
 
         // Tutorials Icon Caption Label
         Label tutorials = new Label("SQBS 2.0 Tutorials!");
@@ -124,6 +136,7 @@ public class Frontend extends Application {
         menu.getChildren().add(tutorials);
         tutorials.getStyleClass().add("testclass");
         tutorials.setVisible(false);
+        System.out.println(tutorials.getHeight());
         circleTutorials.setOnMouseClicked(event -> circleTutorials.isFocused());
 
         // Tutorial Icon Bottom Text event visible
@@ -147,6 +160,14 @@ public class Frontend extends Application {
         Scene scene = new Scene(menu, 1920, 1020);
         // About section
         Scene aboutsection = new Scene(aboutsec, 1920, 1020);
+
+        if(iconTool.getTranslateX() < scene.getWidth()) {
+            iconTool.setTranslateX(dynamicScale2.scaleObjectXPos(iconTool.getTranslateX()));
+        }
+
+        if(tutorials.getTranslateX() < scene.getWidth()) {
+            tutorials.setTranslateX(dynamicScale.scaleObjectXPos(tutorials.getTranslateX()));
+        }
 
         // Button Events
         about.setOnAction(event -> primaryStage.setScene(aboutsection));
