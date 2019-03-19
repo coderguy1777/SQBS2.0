@@ -1,9 +1,14 @@
 package GUIandJavaFXFrontEnd;
 
 // Imports from javafx
+import javafx.animation.TranslateTransition;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,11 +17,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 
 public class Frontend extends Application {
@@ -76,13 +84,11 @@ public class Frontend extends Application {
 
         // Title
         Label title = new Label("SQBS 2.0");
-        DynamicScale scale = new DynamicScale(primaryStage.getMaxHeight(), primaryStage.getMaxWidth(), title.getTranslateX(), title.getTranslateY());
         title.setTranslateY(-400.0);
         title.setAlignment(Pos.CENTER);
         title.setMaxWidth(300.0);
         title.setMaxHeight(100.0);
         title.setFont(new Font("Sans", 50));
-        title.setTranslateY(scale.scaleObjectYPos(title.getTranslateY()));
         menu.getChildren().add(title);
 
         // About section stuff
@@ -97,36 +103,6 @@ public class Frontend extends Application {
         // Aligns content in the center of the window.
         menu.setAlignment(Pos.CENTER);
 
-        // Side Bar Icon 1: Tutorials
-        Circle circleTutorials = new Circle();
-        DynamicScale dynamicScale = new DynamicScale(primaryStage.getMaxHeight(), primaryStage.getMaxWidth(), circleTutorials.getTranslateX(), circleTutorials.getTranslateY());
-
-        circleTutorials.setRadius(50);
-        circleTutorials.setTranslateX(-850.0);
-        menu.getChildren().add(circleTutorials);
-        ShapeColors sideBarColor = new ShapeColors(0);
-        circleTutorials.setFill(sideBarColor.getColor(0));
-        circleTutorials.setTranslateX(dynamicScale.scaleObjectXPos(circleTutorials.getTranslateX()));
-
-        // Tutorials Icon Tool Wrench.
-        Image imageIcon = new Image("http://icons.iconarchive.com/icons/pixelkit/swanky-outlines/256/08-Wrench-icon.png", 75, 75, false, true);
-        ImageView iconTool = new ImageView(imageIcon);
-        menu.getChildren().add(iconTool);
-        iconTool.setTranslateX(-850.0);
-
-        DynamicScale dynamicScale2 = new DynamicScale(primaryStage.getMaxHeight(), primaryStage.getMaxWidth(), iconTool.getX(), iconTool.getY());
-        System.out.println(iconTool.getTranslateX());
-
-        System.out.println(iconTool.getTranslateX());
-
-        Rectangle tutli = new Rectangle(200.0, 190.0);
-        tutli.setTranslateX(-850.0);
-        tutli.setTranslateY(155.0);
-        tutli.setFill(sideBarColor.getColor(6));
-        menu.getChildren().add(tutli);
-        tutli.setVisible(false);
-        tutli.getStyleClass().add("boxx");
-        tutli.setTranslateX(dynamicScale.scaleObjectXPos(tutli.getTranslateX()));
 
         // Tutorials Icon Caption Label
         Label tutorials = new Label("SQBS 2.0 Tutorials!");
@@ -137,22 +113,93 @@ public class Frontend extends Application {
         tutorials.getStyleClass().add("testclass");
         tutorials.setVisible(false);
         System.out.println(tutorials.getHeight());
-        circleTutorials.setOnMouseClicked(event -> circleTutorials.isFocused());
 
-        // Tutorial Icon Bottom Text event visible
-        circleTutorials.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        // Pull down arrow icon
+        Image imagea = new Image("https://image.flaticon.com/icons/png/512/37/37111.png", 30, 30, false, true);
+        ImageView imageA = new ImageView(imagea);
+        imageA.setVisible(true);
+        imageA.setTranslateX(-600);
+        imageA.setTranslateY(-493);
+
+
+        // Pull down bar for side menu
+        // Made with the use of Hbox to
+        // create vertical row.
+        Button open = new Button("Open Options");
+        Button close = new Button("Close Options");
+        HBox menuOptions = new HBox();
+        menuOptions.getChildren().addAll(close,  open);
+        menu.getChildren().add(menuOptions);
+        menuOptions.setTranslateX(-600);
+        menuOptions.setTranslateY(-550);
+        menuOptions.setId("menuOptions");
+        menuOptions.setMaxWidth(300.0);
+        menuOptions.setMaxHeight(40.0);
+        menuOptions.setPadding(new Insets(10, 10, 15, 10));
+
+        Button moreOptions = new Button();
+        moreOptions.setMaxWidth(100.0);
+        moreOptions.setMaxHeight(50.0);
+        moreOptions.setTranslateX(-600);
+        moreOptions.setTranslateY(-500);
+        menu.getChildren().addAll(moreOptions, imageA);
+        TranslateTransition dropDownTransition = new TranslateTransition(Duration.millis(300), moreOptions);
+        TranslateTransition dropDDownTransition = new TranslateTransition(Duration.millis(300), imageA);
+        TranslateTransition dropDDDownTransition = new TranslateTransition(Duration.millis(300), menuOptions);
+
+        dropDDDownTransition.setToY(-480);
+        dropDDownTransition.setToY(-430);
+        dropDownTransition.setToY(-430);
+
+        TranslateTransition dr1opDownTransition = new TranslateTransition(Duration.millis(400), moreOptions);
+        TranslateTransition dr1opDDownTransition = new TranslateTransition(Duration.millis(400), imageA);
+        TranslateTransition dr1opDDDownTransition = new TranslateTransition(Duration.millis(400), menuOptions);
+
+        dr1opDownTransition.setToY(-500);
+        dr1opDDownTransition.setToY(-493);
+        dr1opDDDownTransition.setToY(-550);
+
+        moreOptions.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                tutorials.setVisible(true);
-                tutli.setVisible(true);
-                if(event.getClickCount() == 2) {
-                    tutorials.setVisible(false);
-                    tutli.setVisible(false);
-                }
+                dropDDDownTransition.play();
+                dropDDownTransition.play();
+                dropDownTransition.play();
+            }
+        });
+        moreOptions.setId("buttonmore");
+        imageA.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                dr1opDDDownTransition.play();
+                dr1opDownTransition.play();
+                dr1opDDownTransition.play();
             }
         });
 
 
+        // Side Bar Menu
+        VBox menus = new VBox();
+        menus.setId("menu");
+        menus.setMaxWidth(200.0);
+        Button currentTournamentMonitor = new Button("Current Tournament");
+        Button Tutorials = new Button("Tutorials");
+        menus.setPadding(new Insets(10, 10, 10, 10));
+
+        menus.getChildren().addAll(currentTournamentMonitor, new Button("Something else"), new Button("Something different"), Tutorials);
+        menus.setTranslateX(-1200);
+        TranslateTransition menuTranslation = new TranslateTransition(Duration.millis(200), menus);
+        menuTranslation.setToX(-860);
+        TranslateTransition menuTrans = new TranslateTransition(Duration.millis(200), menus);
+        menuTrans.setToX(-1200);
+        open.setOnMouseClicked(event -> menuTranslation.play());
+        close.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                menuTrans.play();
+            }
+        });
+        menu.getChildren().addAll(menus);
 
         // Set up of scenes and windows for the program to use
         primaryStage.setTitle("SQBS 2.0");
@@ -161,13 +208,6 @@ public class Frontend extends Application {
         // About section
         Scene aboutsection = new Scene(aboutsec, 1920, 1020);
 
-        if(iconTool.getTranslateX() < scene.getWidth()) {
-            iconTool.setTranslateX(dynamicScale2.scaleObjectXPos(iconTool.getTranslateX()));
-        }
-
-        if(tutorials.getTranslateX() < scene.getWidth()) {
-            tutorials.setTranslateX(dynamicScale.scaleObjectXPos(tutorials.getTranslateX()));
-        }
 
         // Button Events
         about.setOnAction(event -> primaryStage.setScene(aboutsection));
