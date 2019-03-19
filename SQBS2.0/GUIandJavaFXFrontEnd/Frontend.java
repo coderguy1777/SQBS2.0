@@ -82,6 +82,14 @@ public class Frontend extends Application {
         about.setFont(new Font("Sans", 20));
         menu.getChildren().add(about);
 
+        // Back Button for about section
+        Button back = new Button("Go back");
+        back.setMaxHeight(50.0);
+        back.setMaxWidth(200.0);
+        back.setTranslateX(-500.0);
+        back.setTranslateY(300.0);
+        aboutsec.getChildren().add(back);
+
         // Title
         Label title = new Label("SQBS 2.0");
         title.setTranslateY(-400.0);
@@ -116,6 +124,7 @@ public class Frontend extends Application {
 
         // Pull down arrow icon
         Image imagea = new Image("https://image.flaticon.com/icons/png/512/37/37111.png", 30, 30, false, true);
+        DynamicScale scale2 = new DynamicScale(primaryStage.getHeight(), primaryStage.getWidth(), imagea.getHeight(), imagea.getWidth());
         ImageView imageA = new ImageView(imagea);
         imageA.setVisible(true);
         imageA.setTranslateX(-600);
@@ -131,17 +140,22 @@ public class Frontend extends Application {
         menuOptions.getChildren().addAll(close,  open);
         menu.getChildren().add(menuOptions);
         menuOptions.setTranslateX(-600);
-        menuOptions.setTranslateY(-550);
+        menuOptions.setTranslateY(-560);
         menuOptions.setId("menuOptions");
         menuOptions.setMaxWidth(300.0);
         menuOptions.setMaxHeight(40.0);
         menuOptions.setPadding(new Insets(10, 10, 15, 10));
+        DynamicScale scale = new DynamicScale(primaryStage.getMaxHeight(), primaryStage.getMaxWidth(), menuOptions.getHeight(), menuOptions.getWidth());
 
+        // More Options Button for the menu.
         Button moreOptions = new Button();
         moreOptions.setMaxWidth(100.0);
         moreOptions.setMaxHeight(50.0);
         moreOptions.setTranslateX(-600);
         moreOptions.setTranslateY(-500);
+
+        // Adding of animation transitions into the pull down for the buttons
+        // to pull the side menu up. as well, etc.
         menu.getChildren().addAll(moreOptions, imageA);
         TranslateTransition dropDownTransition = new TranslateTransition(Duration.millis(300), moreOptions);
         TranslateTransition dropDDownTransition = new TranslateTransition(Duration.millis(300), imageA);
@@ -159,6 +173,8 @@ public class Frontend extends Application {
         dr1opDDownTransition.setToY(-493);
         dr1opDDDownTransition.setToY(-550);
 
+
+        // Side Menu events for mouse clicks
         moreOptions.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -176,8 +192,6 @@ public class Frontend extends Application {
                 dr1opDDownTransition.play();
             }
         });
-
-
         // Side Bar Menu
         VBox menus = new VBox();
         menus.setId("menu");
@@ -186,6 +200,7 @@ public class Frontend extends Application {
         Button Tutorials = new Button("Tutorials");
         menus.setPadding(new Insets(10, 10, 10, 10));
 
+        // More action for the side menu and that working as well.
         menus.getChildren().addAll(currentTournamentMonitor, new Button("Something else"), new Button("Something different"), Tutorials);
         menus.setTranslateX(-1200);
         TranslateTransition menuTranslation = new TranslateTransition(Duration.millis(200), menus);
@@ -201,12 +216,49 @@ public class Frontend extends Application {
         });
         menu.getChildren().addAll(menus);
 
+        /*
+        section in which the team entering UI is created.
+         */
+
+        // Label for the amount of divisions wanted for the tournament.
+        Label amountsofteamsdivs = new Label("Amount of Divisions");
+        amountsofteamsdivs.setFont(new Font("Arial", 15));
+        amountsofteamsdivs.setTranslateX(-450);
+        amountsofteamsdivs.setTranslateY(-200.0);
+        tournamententering.getChildren().add(amountsofteamsdivs);
+
+        // Label for the amount of teams in each division
+        Label teamamount = new Label("Amount of Teams");
+        teamamount.setFont(new Font("Arial", 15));
+        teamamount.setTranslateX(-450);
+        teamamount.setTranslateY(-100.0);
+        tournamententering.getChildren().add(teamamount);
+
+        //Label for the teams with substiutes.
+        Label teamswithsubs = new Label("Amount of Teams with Subs");
+        teamswithsubs.setFont(new Font("Arial", 15));
+        teamswithsubs.setTranslateX(-450);
+        teamswithsubs.setTranslateY(0);
+        tournamententering.getChildren().add(teamswithsubs);
+
+        amountsofteamsdivs.setId("TeamDivID");
+
+        amountsofteamsdivs.getStyleClass().add("testclasss");
+        teamamount.setId("TeamAmountID");
+        teamswithsubs.setId("TeamSubID");
+        teamamount.setPadding(new Insets(10, 10, 10, 10));
+
+
+
+
         // Set up of scenes and windows for the program to use
         primaryStage.setTitle("SQBS 2.0");
         // Menu
         Scene scene = new Scene(menu, 1920, 1020);
         // About section
         Scene aboutsection = new Scene(aboutsec, 1920, 1020);
+        // Tournament Creation section
+        Scene tournamentcreation = new Scene(tournamententering, 800, 600);
 
 
         // Button Events
@@ -221,11 +273,14 @@ public class Frontend extends Application {
                 }
             }
         });
+        back.setOnMouseClicked(event -> primaryStage.setScene(scene));
+        new_tournament.setOnMouseClicked(event -> primaryStage.setScene(tournamentcreation));
 
         // CSS Styling
         aboutsec.getStyleClass().add("body2");
         menu.getStylesheets().add(getClass().getResource("FrontendStyling.css").toExternalForm());
         aboutsection.getStylesheets().add(getClass().getResource("FrontendStyling.css").toExternalForm());
+        tournamententering.getStylesheets().add(getClass().getResource("FrontendStyling.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
     }
