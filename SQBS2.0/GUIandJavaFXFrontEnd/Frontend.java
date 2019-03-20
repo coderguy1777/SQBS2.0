@@ -1,6 +1,7 @@
 package GUIandJavaFXFrontEnd;
 
 // Imports from javafx
+import com.sun.javafx.sg.prism.NGPhongMaterial;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
@@ -20,15 +21,20 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Material;
+import javafx.scene.shape.Box;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.awt.*;
+
 
 public class Frontend extends Application {
 
+    // About section info string
     private static String aboutinfo =
                     "  Made by CSW Quizbowl Students to revitalize stat keeping during NAQT Tournaments in Wilmington Delaware.  \n "
                     + "SQBS 2.0 is meant to revitalize the loved stat application, SQBS, with a more modern touch. SQBS 2.0 is made to\n"
@@ -36,6 +42,7 @@ public class Frontend extends Application {
                     + "statistical process of running Quizbowl tournament.";
     @Override
     public void start(Stage primaryStage) throws Exception {
+        // StackPanes for use within the program
         StackPane menu = new StackPane();
         StackPane tournamententering = new StackPane();
         StackPane aboutsec = new StackPane();
@@ -84,10 +91,9 @@ public class Frontend extends Application {
 
         // Back Button for about section
         Button back = new Button("Go back");
-        back.setMaxHeight(50.0);
-        back.setMaxWidth(200.0);
-        back.setTranslateX(-500.0);
-        back.setTranslateY(300.0);
+        back.setFont(new Font("Arial", 15));
+        back.setTranslateX(-900);
+        back.setTranslateY(475);
         aboutsec.getChildren().add(back);
 
         // Title
@@ -161,10 +167,12 @@ public class Frontend extends Application {
         TranslateTransition dropDDownTransition = new TranslateTransition(Duration.millis(300), imageA);
         TranslateTransition dropDDDownTransition = new TranslateTransition(Duration.millis(300), menuOptions);
 
+        // Setting of the animation positions
         dropDDDownTransition.setToY(-480);
         dropDDownTransition.setToY(-430);
         dropDownTransition.setToY(-430);
 
+        //Closing animations for the buttons in this case
         TranslateTransition dr1opDownTransition = new TranslateTransition(Duration.millis(400), moreOptions);
         TranslateTransition dr1opDDownTransition = new TranslateTransition(Duration.millis(400), imageA);
         TranslateTransition dr1opDDDownTransition = new TranslateTransition(Duration.millis(400), menuOptions);
@@ -172,7 +180,6 @@ public class Frontend extends Application {
         dr1opDownTransition.setToY(-500);
         dr1opDDownTransition.setToY(-493);
         dr1opDDDownTransition.setToY(-550);
-
 
         // Side Menu events for mouse clicks
         moreOptions.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -183,15 +190,20 @@ public class Frontend extends Application {
                 dropDownTransition.play();
             }
         });
+        // Setting up css button id
         moreOptions.setId("buttonmore");
+
+        // Mouse Click event for the image.
         imageA.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                // Plays the animations for the closing part of the drop down button
                 dr1opDDDownTransition.play();
                 dr1opDownTransition.play();
                 dr1opDDownTransition.play();
             }
         });
+
         // Side Bar Menu
         VBox menus = new VBox();
         menus.setId("menu");
@@ -215,41 +227,65 @@ public class Frontend extends Application {
             }
         });
         menu.getChildren().addAll(menus);
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
         /*
         section in which the team entering UI is created.
          */
 
+        // Rectangle for storing the first options of amount of teams and divisions
+        Rectangle rectangle = new Rectangle(250, 260, 20, 20);
+        rectangle.setHeight(280.0);
+        rectangle.setWidth(260.0);
+        rectangle.setTranslateX(-500);
+        rectangle.setTranslateY(-100);
+        tournamententering.getChildren().add(rectangle);
+        rectangle.setId("Test");
+        ShapeColors shapeColors = new ShapeColors(10);
+        rectangle.setFill(shapeColors.getColor(10));
+        rectangle.setArcHeight(15);
+        rectangle.setArcWidth(15);
+
         // Label for the amount of divisions wanted for the tournament.
         Label amountsofteamsdivs = new Label("Amount of Divisions");
         amountsofteamsdivs.setFont(new Font("Arial", 15));
-        amountsofteamsdivs.setTranslateX(-450);
+        amountsofteamsdivs.setTranslateX(-500);
         amountsofteamsdivs.setTranslateY(-200.0);
         tournamententering.getChildren().add(amountsofteamsdivs);
 
         // Label for the amount of teams in each division
         Label teamamount = new Label("Amount of Teams");
         teamamount.setFont(new Font("Arial", 15));
-        teamamount.setTranslateX(-450);
-        teamamount.setTranslateY(-100.0);
+        teamamount.setTranslateX(-500);
+        teamamount.setTranslateY(-110);
         tournamententering.getChildren().add(teamamount);
 
         //Label for the teams with substiutes.
         Label teamswithsubs = new Label("Amount of Teams with Subs");
         teamswithsubs.setFont(new Font("Arial", 15));
-        teamswithsubs.setTranslateX(-450);
-        teamswithsubs.setTranslateY(0);
+        teamswithsubs.setTranslateX(-500);
+        teamswithsubs.setTranslateY(-20);
         tournamententering.getChildren().add(teamswithsubs);
 
-        amountsofteamsdivs.setId("TeamDivID");
+        // Text Field for entering
 
-        amountsofteamsdivs.getStyleClass().add("testclasss");
+        // Back Button (Tournament Entering Section)
+        Button backTournament = new Button("Go Back");
+        backTournament.setFont(new Font("Arial", 15));
+        backTournament.setTranslateX(-900);
+        backTournament.setTranslateY(475);
+        tournamententering.getChildren().add(backTournament);
+
+        // ID's for use within the CSS of the styling of
+        // The Program.
+        amountsofteamsdivs.setId("TeamDivID");
         teamamount.setId("TeamAmountID");
         teamswithsubs.setId("TeamSubID");
-        teamamount.setPadding(new Insets(10, 10, 10, 10));
 
-
-
+        // Creation of padding for the labels for the stat keeping set.
+        teamamount.setPadding(new Insets(5, 5, 5, 5));
+        amountsofteamsdivs.setPadding(new Insets(5, 5, 5, 5));
+        teamswithsubs.setPadding(new Insets(5, 5, 5, 5));
 
         // Set up of scenes and windows for the program to use
         primaryStage.setTitle("SQBS 2.0");
@@ -258,7 +294,7 @@ public class Frontend extends Application {
         // About section
         Scene aboutsection = new Scene(aboutsec, 1920, 1020);
         // Tournament Creation section
-        Scene tournamentcreation = new Scene(tournamententering, 800, 600);
+        Scene tournamentcreation = new Scene(tournamententering, 1920, 1020);
 
 
         // Button Events
@@ -273,14 +309,21 @@ public class Frontend extends Application {
                 }
             }
         });
+
+        // Back Button event for the about section
         back.setOnMouseClicked(event -> primaryStage.setScene(scene));
+
+        // Button that goes back from the new tournament section
+        backTournament.setOnMouseClicked(event -> primaryStage.setScene(scene));
+
+        // Opens the new tournament section for a new tournament creation
         new_tournament.setOnMouseClicked(event -> primaryStage.setScene(tournamentcreation));
 
         // CSS Styling
         aboutsec.getStyleClass().add("body2");
         menu.getStylesheets().add(getClass().getResource("FrontendStyling.css").toExternalForm());
         aboutsection.getStylesheets().add(getClass().getResource("FrontendStyling.css").toExternalForm());
-        tournamententering.getStylesheets().add(getClass().getResource("FrontendStyling.css").toExternalForm());
+        tournamententering.getStylesheets().add(getClass().getResource("TournamentEntering.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
     }

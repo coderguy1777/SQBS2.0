@@ -1,0 +1,30 @@
+.body {
+    -fx-background-color: darkred;
+}
+
+body {
+    -fx-background-color: red;
+}
+
+.label {
+    -fx-background-color: #620000;
+    -fx-border-radius: 3 3 3 3;
+    -fx-background-radius: 3 3 3 3;
+    -fx-text-fill: teal;
+}
+
+.root {
+    -fx-background-color: #2e7f44;
+}
+
+.button {
+    -fx-background-color: teal;
+    -fx-border-width: 0px;
+    -fx-border-radius: 2 2 2 2;
+    -fx-background-radius: 2 2 2 2;
+    -fx-text-fill: #273d4e;
+}
+
+.button:hover {
+    -fx-background-color: #353d7b;
+}
