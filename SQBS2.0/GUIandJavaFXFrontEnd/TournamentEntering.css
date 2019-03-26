@@ -26,5 +26,15 @@ body {
 }
 
 .button:hover {
-    -fx-background-color: #353d7b;
+    -fx-background-color: #aca4f3;
+}
+
+#textDivField {
+    -fx-max-width: 35px;
+    -fx-border-color: none;
+}
+
+#confirmButton {
+    -fx-max-height: 22px;
+    -fx-font-weight: bold;
 }

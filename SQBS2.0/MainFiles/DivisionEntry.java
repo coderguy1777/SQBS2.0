@@ -1,41 +1,51 @@
 package MainFiles;
-
 import java.util.ArrayList;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.parser.HtmlTreeBuilder;
 
-public class DivisionEntry {
-    private int divisionamounts;
-    private int bracketAmount;
-    private int teamamounts;
-    public static String DivName;
-    private static final int maxmatchsize = 2;
-    private ArrayList<String>Divisions = new ArrayList<>();
-    private ArrayList<String>Brackets = new ArrayList<>();
+public class DivisionEntry extends BracketCreation{
+    private String divisionamount;
+    private String teamamount;
+    private String subamount;
+    int bracketsize;
+    private ArrayList<ArrayList<Integer>>BracketLi = new ArrayList<>();
 
-    public DivisionEntry(int bracketAmount, int divisionamounts, int teamamounts, String DivName) {
-        this.divisionamounts = divisionamounts;
-        this.teamamounts = teamamounts;
-        this.bracketAmount = bracketAmount;
-        DivisionEntry.DivName = DivName;
-        Divisions.add(DivName);
+    public DivisionEntry(String divisionamount, String teamamount, String subamount) {
+        this.divisionamount = divisionamount;
+        this.teamamount = teamamount;
+        this.subamount = subamount;
+        strParse();
     }
 
-    public void setDivisionamounts(int size) {
-        this.divisionamounts = size;
+    private ArrayList<Integer> strParse() {
+        int divamount, teamamount, subamount;
+        divamount = Integer.parseInt(this.divisionamount);
+        teamamount = Integer.parseInt(this.teamamount);
+        subamount = Integer.parseInt(this.subamount);
+        ArrayList<Integer>parseStrings = new ArrayList<>();
+        parseStrings.add(divamount);
+        parseStrings.add(teamamount);
+        parseStrings.add(subamount);
+        return parseStrings;
     }
 
-    public int getDivisionamounts() {
-        return divisionamounts;
-    }
+    public void newBracketCreator() throws BracketException {
+        ArrayList<Integer>divisions = new ArrayList<>();
+        ArrayList<Integer>teams = new ArrayList<>();
+        int divcount = 0;
+        int teamcount = 0;
+        int subcount = 0;
+        ArrayList<Integer>parsed = strParse();
+        divcount = parsed.get(0);
+        teamcount = parsed.get(1);
+        subcount = parsed.get(2);
+        for(int i = divcount; i > 0; i--) {
+            divisions.add(i);
+        }
 
-    public void setTeamamounts(int size) {
-        this.teamamounts = size;
-    }
-
-    public String getDivName(int index) {
-        return Divisions.get(index);
+        for(int j = teamcount; j > 0; j--) {
+            teams.add(j);
+        }
     }
 }

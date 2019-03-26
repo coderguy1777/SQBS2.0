@@ -1,6 +1,7 @@
 package GUIandJavaFXFrontEnd;
 
 // Imports from javafx
+import MainFiles.DivisionEntry;
 import com.sun.javafx.sg.prism.NGPhongMaterial;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
@@ -8,11 +9,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import MainFiles.DivisionEntry;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -267,7 +270,72 @@ public class Frontend extends Application {
         teamswithsubs.setTranslateY(-20);
         tournamententering.getChildren().add(teamswithsubs);
 
-        // Text Field for entering
+        // ints for the division, team, and sub class for bracket sorting.
+        int divsize, teamsize, subsize;
+
+        // Text Field for entering the division amount
+        TextField divisions = new TextField();
+        divisions.isEditable();
+        divisions.setTranslateX(-530);
+        divisions.setTranslateY(-170);
+        divisions.setId("textDivField");
+        tournamententering.getChildren().add(divisions);
+
+        // Text Field for entering team amount
+        TextField teams = new TextField();
+        teams.isEditable();
+        teams.setTranslateX(-530);
+        teams.setTranslateY(-78);
+        teams.setId("textDivField");
+        tournamententering.getChildren().add(teams);
+
+        // Text Field for entering teams with subs.
+        TextField teamsWithSubs = new TextField();
+        teamsWithSubs.isEditable();
+        teamsWithSubs.setTranslateX(-530.0);
+        teamsWithSubs.setTranslateY(12);
+        teamsWithSubs.setId("textDivField");
+        tournamententering.getChildren().add(teamsWithSubs);
+
+
+        // Button to confirm the amount of divisions entered
+        Button confirmDivs = new Button("Confirm");
+        confirmDivs.setTranslateY(-170);
+        confirmDivs.setTranslateX(-480);
+        confirmDivs.setFont(new Font("Arial", 10));
+        confirmDivs.setId("confirmButton");
+        tournamententering.getChildren().add(confirmDivs);
+        confirmDivs.setOnMouseClicked(event -> divisions.setEditable(false));
+
+
+        // Button to confirm the amount of teams entered
+        Button confirmTeams = new Button("Confirm");
+        confirmTeams.setTranslateX(-480);
+        confirmTeams.setTranslateY(-78);
+        confirmTeams.setFont(new Font("Arial", 10.0));
+        confirmTeams.setId("confirmButton");
+        tournamententering.getChildren().add(confirmTeams);
+        confirmTeams.setOnMouseClicked(event -> teams.setEditable(false));
+
+        // Button to confirm teams with subs entered
+        Button teamsWWithSubs = new Button();
+        teamsWWithSubs.setText("Confirm");
+        teamsWWithSubs.setTranslateX(-480);
+        teamsWWithSubs.setTranslateY(12.0);
+        teamsWWithSubs.setFont(new Font("Arial", 10.00));
+        teamsWWithSubs.setId("confirmButton");
+        tournamententering.getChildren().add(teamsWWithSubs);
+        teamsWWithSubs.setOnMouseClicked(event -> teamsWithSubs.setEditable(false));
+
+        // Rectangle for the background of the teamn name set up and experienced
+        // setup for brackets
+        Rectangle bracketSetupTeams = new Rectangle(300, 350,20, 20);
+        bracketSetupTeams.setHeight(300.0);
+        bracketSetupTeams.setWidth(250.0);
+        bracketSetupTeams.setTranslateX(-200);
+        bracketSetupTeams.setTranslateY(-100);
+        bracketSetupTeams.setId("BracketSetupP1");
+        tournamententering.getChildren().add(bracketSetupTeams);
 
         // Back Button (Tournament Entering Section)
         Button backTournament = new Button("Go Back");
@@ -275,6 +343,13 @@ public class Frontend extends Application {
         backTournament.setTranslateX(-900);
         backTournament.setTranslateY(475);
         tournamententering.getChildren().add(backTournament);
+
+
+        String divA = "10";
+        String teamA = "5";
+        String subA = "3";
+        DivisionEntry divisionEntry = new DivisionEntry(divA, teamA, subA);
+        divisionEntry.newBracketCreator();
 
         // ID's for use within the CSS of the styling of
         // The Program.
