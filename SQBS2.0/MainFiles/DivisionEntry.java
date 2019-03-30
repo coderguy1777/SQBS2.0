@@ -1,51 +1,54 @@
 package MainFiles;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
+
+import javax.lang.model.type.ArrayType;
 import java.util.ArrayList;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.parser.HtmlTreeBuilder;
 
-public class DivisionEntry extends BracketCreation{
-    private String divisionamount;
-    private String teamamount;
-    private String subamount;
+public class DivisionEntry extends BracketCreation {
+    private int divisionamount;
+    private int teamamount;
+    private int subamount;
     int bracketsize;
-    private ArrayList<ArrayList<Integer>>BracketLi = new ArrayList<>();
+    public ArrayList<MenuItem>test = new ArrayList<>();
 
-    public DivisionEntry(String divisionamount, String teamamount, String subamount) {
-        this.divisionamount = divisionamount;
-        this.teamamount = teamamount;
-        this.subamount = subamount;
-        strParse();
+    public DivisionEntry(ArrayList<String>Test) {
+        strParse(Test);
     }
 
-    private ArrayList<Integer> strParse() {
-        int divamount, teamamount, subamount;
-        divamount = Integer.parseInt(this.divisionamount);
-        teamamount = Integer.parseInt(this.teamamount);
-        subamount = Integer.parseInt(this.subamount);
-        ArrayList<Integer>parseStrings = new ArrayList<>();
-        parseStrings.add(divamount);
-        parseStrings.add(teamamount);
-        parseStrings.add(subamount);
+    // Parses the ArrayList of inputted Strings to be parsed
+    private ArrayList<Integer> strParse(ArrayList<String> test) {
+        ArrayList<Integer> parseStrings = new ArrayList<>();
+        for(String I: test) {
+            parseStrings.add(Integer.parseInt(I));
+        }
+        divisionamount = parseStrings.get(0);
+        teamamount = parseStrings.get(1);
+        subamount = parseStrings.get(2);
         return parseStrings;
     }
 
-    public void newBracketCreator() throws BracketException {
-        ArrayList<Integer>divisions = new ArrayList<>();
-        ArrayList<Integer>teams = new ArrayList<>();
-        int divcount = 0;
-        int teamcount = 0;
-        int subcount = 0;
-        ArrayList<Integer>parsed = strParse();
-        divcount = parsed.get(0);
-        teamcount = parsed.get(1);
-        subcount = parsed.get(2);
-        for(int i = divcount; i > 0; i--) {
-            divisions.add(i);
-        }
+    public int getDivisionamount() {
+        return this.divisionamount;
+    }
 
-        for(int j = teamcount; j > 0; j--) {
-            teams.add(j);
+    public void newBracketCreator() {
+        ArrayList<MenuItem>menuItems = new ArrayList<>();
+        for(int i = 0; i < this.divisionamount; i++) {
+            menuItems.add(new MenuItem(" Division " + i));
+            items(test);
         }
     }
+
+    public void items(ArrayList<MenuItem>inputs) {
+        MenuItem j = null;
+        for(MenuItem i: inputs) {
+            test.add(i);
+        }
+    }
+
+    public ArrayList<MenuItem>tester() {
+        return test;
+    }
+
 }

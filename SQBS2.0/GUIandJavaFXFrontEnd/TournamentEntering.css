@@ -38,3 +38,15 @@ body {
     -fx-max-height: 22px;
     -fx-font-weight: bold;
 }
+
+#BracketSetupP1 {
+    -fx-background-radius: 5 5 5 5;
+    -fx-border-radius: 5 5 5 5;
+    -fx-background-color: #353d7b;
+}
+
+#finalConf {
+    -fx-background-radius: 5 5 5 5;
+    -fx-border-radius: 5 5 5 5;
+    -fx-background-color: #998eff;
+}

@@ -2,20 +2,14 @@ package GUIandJavaFXFrontEnd;
 
 // Imports from javafx
 import MainFiles.DivisionEntry;
-import com.sun.javafx.sg.prism.NGPhongMaterial;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import MainFiles.DivisionEntry;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -24,18 +18,19 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Material;
-import javafx.scene.shape.Box;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.awt.*;
+import java.util.ArrayList;
 
 
 public class Frontend extends Application {
+    public String a;
+    public String b;
+    public String c;
+
 
     // About section info string
     private static String aboutinfo =
@@ -230,7 +225,6 @@ public class Frontend extends Application {
             }
         });
         menu.getChildren().addAll(menus);
-        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
         /*
         section in which the team entering UI is created.
@@ -238,7 +232,7 @@ public class Frontend extends Application {
 
         // Rectangle for storing the first options of amount of teams and divisions
         Rectangle rectangle = new Rectangle(250, 260, 20, 20);
-        rectangle.setHeight(280.0);
+        rectangle.setHeight(360.0);
         rectangle.setWidth(260.0);
         rectangle.setTranslateX(-500);
         rectangle.setTranslateY(-100);
@@ -270,8 +264,6 @@ public class Frontend extends Application {
         teamswithsubs.setTranslateY(-20);
         tournamententering.getChildren().add(teamswithsubs);
 
-        // ints for the division, team, and sub class for bracket sorting.
-        int divsize, teamsize, subsize;
 
         // Text Field for entering the division amount
         TextField divisions = new TextField();
@@ -307,7 +299,6 @@ public class Frontend extends Application {
         tournamententering.getChildren().add(confirmDivs);
         confirmDivs.setOnMouseClicked(event -> divisions.setEditable(false));
 
-
         // Button to confirm the amount of teams entered
         Button confirmTeams = new Button("Confirm");
         confirmTeams.setTranslateX(-480);
@@ -316,6 +307,40 @@ public class Frontend extends Application {
         confirmTeams.setId("confirmButton");
         tournamententering.getChildren().add(confirmTeams);
         confirmTeams.setOnMouseClicked(event -> teams.setEditable(false));
+
+
+        // Confirm button for bottom
+        Button finalConfirm = new Button("Confirm all choices");
+        finalConfirm.setTranslateX(-500);
+        finalConfirm.setTranslateY(50);
+        finalConfirm.setFont(new Font("Arial", 15));
+        finalConfirm.setId("finalConf");
+        tournamententering.getChildren().add(finalConfirm);
+
+        /*
+            An event that confirms the team names, division names, and team names, and
+            prepares them for being named in this case in the next option box.
+         */
+        finalConfirm.setOnMouseClicked(event -> {
+            // Prepares the match info for parsing
+            ArrayList<String>tournamentinfo = new ArrayList<>();
+            a = divisions.getText();
+            b = teams.getText();
+            c = teamsWithSubs.getText();
+            tournamentinfo.add(a);
+            tournamentinfo.add(b);
+            tournamentinfo.add(c);
+            DivisionEntry divisionEntry = new DivisionEntry(tournamentinfo);
+            divisionEntry.newBracketCreator();
+            System.out.println(divisionEntry.getDivisionamount());
+            divisionEntry.newBracketCreator();
+            divisionEntry.tester();
+            MenuButton tester;
+            for(int i = 0; i < divisionEntry.getDivisionamount(); i++) {
+                System.out.println(i);
+            }
+        });
+
 
         // Button to confirm teams with subs entered
         Button teamsWWithSubs = new Button();
@@ -335,7 +360,23 @@ public class Frontend extends Application {
         bracketSetupTeams.setTranslateX(-200);
         bracketSetupTeams.setTranslateY(-100);
         bracketSetupTeams.setId("BracketSetupP1");
+        bracketSetupTeams.setFill(shapeColors.getColor(10));
+        bracketSetupTeams.setArcWidth(15);
+        bracketSetupTeams.setArcHeight(15);
         tournamententering.getChildren().add(bracketSetupTeams);
+
+        // Label for the divisions and the division name
+        Label divNames = new Label();
+        divNames.setText("Please enter a name for each division");
+        divNames.setId("DivisionNames");
+        divNames.setFont(new Font("Arial", 13));
+        divNames.setTranslateX(-200);
+        divNames.setTranslateY(-220);
+        divNames.setPadding(new Insets(5, 5, 5, 5));
+        tournamententering.getChildren().add(divNames);
+
+        // Creates options for menu button;
+
 
         // Back Button (Tournament Entering Section)
         Button backTournament = new Button("Go Back");
@@ -344,15 +385,9 @@ public class Frontend extends Application {
         backTournament.setTranslateY(475);
         tournamententering.getChildren().add(backTournament);
 
-
-        String divA = "10";
-        String teamA = "5";
-        String subA = "3";
-        DivisionEntry divisionEntry = new DivisionEntry(divA, teamA, subA);
-        divisionEntry.newBracketCreator();
-
-        // ID's for use within the CSS of the styling of
-        // The Program.
+        /*
+            CSS IDS for use for styling.
+         */
         amountsofteamsdivs.setId("TeamDivID");
         teamamount.setId("TeamAmountID");
         teamswithsubs.setId("TeamSubID");
