@@ -1,11 +1,9 @@
 package MainFiles;
-import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 
-import javax.lang.model.type.ArrayType;
 import java.util.ArrayList;
 
-public class DivisionEntry extends BracketCreation {
+public class DivisionEntry  {
     private int divisionamount;
     private int teamamount;
     private int subamount;

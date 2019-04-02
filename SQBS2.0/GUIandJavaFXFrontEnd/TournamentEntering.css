@@ -50,3 +50,7 @@ body {
     -fx-border-radius: 5 5 5 5;
     -fx-background-color: #998eff;
 }
+
+#finalConf:hover {
+    -fx-background-color: #ee7c71;
+}

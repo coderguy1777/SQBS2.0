@@ -1,6 +1,7 @@
 package GUIandJavaFXFrontEnd;
 
 // Imports from javafx
+
 import MainFiles.DivisionEntry;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
@@ -9,7 +10,10 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -367,7 +371,7 @@ public class Frontend extends Application {
 
         // Label for the divisions and the division name
         Label divNames = new Label();
-        divNames.setText("Please enter a name for each division");
+        divNames.setText("Division and Team names");
         divNames.setId("DivisionNames");
         divNames.setFont(new Font("Arial", 13));
         divNames.setTranslateX(-200);
@@ -375,7 +379,47 @@ public class Frontend extends Application {
         divNames.setPadding(new Insets(5, 5, 5, 5));
         tournamententering.getChildren().add(divNames);
 
-        // Creates options for menu button;
+        // Labels for division selection
+        Label divisionName = new Label();
+        divisionName.setText("Division");
+        divisionName.setId("DivisionName");
+        divisionName.setFont(new Font("Arial", 13));
+        divisionName.setTranslateX(-250);
+        divisionName.setTranslateY(-190);
+        divisionName.setPadding(new Insets(3, 3, 3, 3));
+        tournamententering.getChildren().add(divisionName);
+
+
+        /* Label for team selection */
+        Label teamNamee = new Label();
+        teamNamee.setText("Team");
+        teamNamee.setId("teamNamer");
+        teamNamee.setFont(new Font("Arial", 13));
+        teamNamee.setTranslateX(-250.0);
+        teamNamee.setTranslateY(-140);
+        teamNamee.setPadding(new Insets(3, 3, 3, 3));
+        tournamententering.getChildren().add(teamNamee);
+
+        // Input for Name value
+        Label newNameDiv = new Label();
+        newNameDiv.setText("Name");
+        newNameDiv.setId("newDiv");
+        newNameDiv.setFont(new Font("Arial", 13));
+        newNameDiv.setTranslateX(-145);
+        newNameDiv.setTranslateY(-190);
+        newNameDiv.setPadding(new Insets(3, 3, 3,3));
+        tournamententering.getChildren().add(newNameDiv);
+
+        // Second new name value
+        Label newNameeTeam = new Label();
+        newNameeTeam.setId("NewTeam");
+        newNameeTeam.setText("Name");
+        newNameeTeam.setFont(new Font("Arial", 13));
+        newNameeTeam.setTranslateX(-145);
+        newNameeTeam.setTranslateY(-140.0);
+        tournamententering.getChildren().add(newNameeTeam);
+
+
 
 
         // Back Button (Tournament Entering Section)
