@@ -1,8 +1,9 @@
 const electron = require('electron');
 const {app, BrowserWindow, Menu} = require('electron');
-
+const ipc = electron.ipcMain;
+let win, colorWin;
 function createWindow() {
-    let win = new BrowserWindow ({
+    win = new BrowserWindow ({
         width: 1280,
         height: 720,
         webPreferences: {
@@ -11,6 +12,13 @@ function createWindow() {
     })
     win.setResizable(true);
     win.loadFile('index.html');
+    ipc.on('new-tournament', function(event) {
+      win.loadFile('windows/new_tournament.html');
+    })
+
+    ipc.on('open-tutorials', function(event) {
+      win.loadFile('windows/tutorials.html');
+    })
 }
 
 app.on('ready', createWindow);
