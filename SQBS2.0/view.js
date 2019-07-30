@@ -6,12 +6,13 @@ const prevTournament = document.getElementById("prevGame");
 const newBracket = document.getElementById("newBracket");
 const prevBracket = document.getElementById("prevBracket");
 
+// button events for windows
 newTournament.addEventListener('click', function() {
     ipc.send('new-tournament');
 });
 
 SQBS2_0_tutorials.addEventListener('click', function() {
-    ipc.send('tutorials');
+    ipc.send('open-tutorials');
 });
 
 prevTournament.addEventListener('click', function() {

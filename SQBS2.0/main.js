@@ -7,7 +7,8 @@ function createWindow() {
         width: 1280,
         height: 720,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            setResizable: true
         }
     })
     win.setResizable(true);
@@ -16,8 +17,20 @@ function createWindow() {
       win.loadFile('windows/new_tournament.html');
     })
 
+    ipc.on('previous-tournament', function(event) {
+      win.loadFile('windows/previous-tournament.html');
+    })
+
     ipc.on('open-tutorials', function(event) {
       win.loadFile('windows/tutorials.html');
+    })
+
+    ipc.on('new-bracket', function(event) {
+      win.loadFile('windows/new-bracket.html');   
+    })
+
+    ipc.on('previous-bracket', function(event) {
+      win.loadFile('windows/previous-bracket.html');
     })
 }
 
