@@ -1,52 +1,33 @@
 body {
+    background-color: darkgray;
+}
+
+.col {
+    font-size: 50px;
+    max-width: fit-content;
+    max-height: fit-content;
+    padding: 5px;
     background-color: gray;
-    margin: 0;
-    overflow: hidden;
-}
-
-.container-cover {
-    display: flex;
-    align-content: center;
-    justify-content: center;
-}
-
-.tutorial-container {
-    display: flex;
-    justify-content: center;
-    width: 90%;
-    margin: 10px;
-    height: 900px;
-    background-color: white;
-    align-content: center;
-}
-
-.title-container {
-    display: flex;
-    width: auto;
-    height: auto;
-    flex-direction: column;
-    margin: -20px;
-    font-size: 30px;
+    -webkit-text-fill-color: white;
+    outline: none;
+    border: none;
     text-align: center;
-    font-family: 'Roboto', sans-serif;
 }
 
-.info-container {
-    display: flex;
-    width: auto;
-    height: auto;
-    flex-direction: column;
-    margin: 0;
+.col:hover {
+    -webkit-text-fill-color: black;
+    background-color: gray;
+}
+
+.row {
+    width: 40%;
+    padding: 10px;
+    background-color: gray;
+    border-radius: 5px;
     justify-content: center;
-    font-family: 'Roboto', sans-serif;
 }
 
-
-hr {
-    position: absolute;
-    -moz-transform: rotate(90deg);
-    -webkit-transform: rotate(90deg);
-    -o-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    transform: rotate(90deg);
+.container {
+    background-color: darkgray;
+    padding: 10px;
 }
