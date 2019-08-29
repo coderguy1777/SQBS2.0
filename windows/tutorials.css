@@ -1,0 +1,33 @@
+body {
+    background-color: darkgray;
+}
+
+.col {
+    font-size: 50px;
+    max-width: fit-content;
+    max-height: fit-content;
+    padding: 5px;
+    background-color: gray;
+    -webkit-text-fill-color: white;
+    outline: none;
+    border: none;
+    text-align: center;
+}
+
+.col:hover {
+    -webkit-text-fill-color: black;
+    background-color: gray;
+}
+
+.row {
+    width: 40%;
+    padding: 10px;
+    background-color: gray;
+    border-radius: 5px;
+    justify-content: center;
+}
+
+.container {
+    background-color: darkgray;
+    padding: 10px;
+}
