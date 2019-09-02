@@ -18,7 +18,7 @@ function createWindow() {
     })
 
     ipc.on('previous-tournament', function(event) {
-      win.loadFile('windows/previous-tournament.html');
+      win.loadFile('windows/previous_tournament.html');
     })
 
     ipc.on('open-tutorials', function(event) {
@@ -26,11 +26,11 @@ function createWindow() {
     })
 
     ipc.on('new-bracket', function(event) {
-      win.loadFile('windows/new-bracket.html');   
+      win.loadFile('windows/new_bracket.html');   
     })
 
     ipc.on('previous-bracket', function(event) {
-      win.loadFile('windows/previous-bracket.html');
+      win.loadFile('windows/previous_bracket.html');
     })
 }
 

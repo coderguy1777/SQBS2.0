@@ -41,10 +41,12 @@ span {
 }
 
 .active {
-    min-width: 50px;
+    display: flex;
+    max-width: 50px;
     min-height: 100%;
     margin: 0;
     float: left;
     position: absolute;
     background-color: gray;
+    flex-direction: column;
 }
